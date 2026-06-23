@@ -1,0 +1,14 @@
+export EDITOR=nvim 
+export VISUAL=nvim
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#727eba,underline"
+export PATH="$HOME/.local/bin:$PATH"
+export ZSH="$HOME/.oh-my-zsh"
+export PATH="$HOME/bin:$PATH"
+export PATH="$PATH:/usr/lib"
+export PATH="$HOME/.nix-profile/bin:$PATH"
+export _JAVA_AWT_WM_NONREPARENTING=1
+export ANDROID_NDK_HOME=$HOME/Android/android-ndk-r27d
+export ANDROID_NDK=$ANDROID_NDK_HOME
+export ANDROID_HOME=$HOME/Android
+export ANDROID_SDK_ROOT=$HOME/Android
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin

@@ -1,0 +1,221 @@
+#!/bin/sh
+set -e
+
+export PATH="/bin:/usr/bin:$PATH"
+
+sudo pacman-key --recv-keys F3B607488DB35A47 --keyserver keyserver.ubuntu.com
+sudo pacman-key --lsign-key F3B607488DB35A47
+
+sudo pacman -U --noconfirm \
+'https://mirror.cachyos.org/repo/x86_64/cachyos/cachyos-keyring-20240331-1-any.pkg.tar.zst' \
+'https://mirror.cachyos.org/repo/x86_64/cachyos/cachyos-mirrorlist-27-1-any.pkg.tar.zst'
+
+if ! grep -q "^\[cachyos\]" /etc/pacman.conf; then
+  echo '
+[cachyos]
+Include = /etc/pacman.d/cachyos-mirrorlist
+' | sudo tee -a /etc/pacman.conf
+fi
+
+sudo pacman -Syy --noconfirm
+sudo pacman -S --noconfirm reflector
+sudo reflector -c Indonesia,Japan,Singapore,US --verbose --age 12 --fastest 10 --score 10 --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+if ! command -v paru &>/dev/null; then
+  sudo pacman -S --needed --noconfirm base-devel git
+  git clone https://aur.archlinux.org/paru.git /tmp/paru
+  cd /tmp/paru
+  makepkg -si --noconfirm
+  cd -
+fi
+
+PACMAN_PKGS=(
+
+# Wayland core
+niri
+waybar
+fuzzel
+swaylock
+swaybg
+wl-clipboard
+pamixer
+dunst
+ly
+brightnessctl
+starship
+playerctl
+bat
+
+thunar
+thunar-archive-plugin
+thunar-volman
+gvfs
+tumbler
+file-roller
+libsecret
+
+pipewire
+pipewire-alsa
+pipewire-pulse
+pipewire-jack
+wireplumber
+rnnoise 
+ladspa
+lsp-plugins-ladspa
+pavucontrol
+alsa-utils
+bluez
+bluez-utils
+blueman
+
+networkmanager
+wireless_tools
+network-manager-applet
+nm-connection-editor
+wget
+curl
+polkit-gnome
+xdg-utils
+xdg-desktop-portal
+xdg-desktop-portal-gtk
+
+gcc
+clang
+cmake
+go
+python
+nasm
+fasm
+python-pip
+
+linux-firmware
+sof-firmware
+amd-ucode
+
+git
+lazygit
+ghidra
+jdk17-openjdk
+mono
+jadx
+zip
+unzip
+file
+htop
+
+kitty
+ghostty
+discord
+obs-studio
+blender
+#steam
+neovim
+#gamemode
+#redshift
+libresprite
+
+mesa
+lib32-mesa
+
+vulkan-radeon
+lib32-vulkan-radeon
+
+nvidia-dkms
+nvidia-utils
+lib32-nvidia-utils
+
+vulkan-nvidia
+lib32-vulkan-nvidia
+
+mpv
+mpd
+vlc
+ncmpcpp
+
+papirus-icon-theme
+gnome-themes-extra
+
+ntfs-3g
+usbutils
+lsof
+
+zsh
+fastfetch
+
+#wine
+
+# untuk waydroid
+#linux-zen linux-zen-headers
+linux
+linux-headers
+
+linux-cachyos
+linux-cachyos-headers
+)
+
+sudo pacman -S --needed --noconfirm "${PACMAN_PKGS[@]}"
+sleep 5
+
+AUR_PKGS=(
+adwaita-qt6
+maplemono-ttf
+arc-gtk-theme
+discord-rpc
+google-chrome
+spotify-launcher
+xqp
+#vscodium
+supergfxctl
+)
+
+paru -S --needed --noconfirm --skipreview --cleanafter --removemake "${AUR_PKGS[@]}"
+sleep 5
+
+# Fonts
+mkdir -p ~/.local/share/fonts
+cp -r /mnt/hdd/hotfiles/.fonts/* ~/.local/share/fonts/
+fc-cache -fv
+sleep 5
+
+# Copy user configs
+cp -r .config $HOME
+cp -r .wallpapers $HOME
+cp -r .scripts $HOME
+cp -r .local $HOME
+cp -f .zshrc $HOME
+cp -f .zshenv $HOME
+cp -f .Xresources $HOME
+cp -f .xinitrc $HOME
+sleep 5
+
+# Oh My Zsh setup
+if [ ! -d "$HOME/.oh-my-zsh" ]; then 
+  RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting  
+else
+  echo "ohmyzsh is already"
+fi 
+sleep 5
+
+sudo systemctl enable --now NetworkManager.service
+sudo systemctl enable --now bluetooth.service
+sudo systemctl enable ly@tty1.service
+#sudo systemctl enable --now ly.service
+systemctl --user enable --now pipewire.socket pipewire-pulse.socket wireplumber.service
+systemctl --user enable --now mpd
+sudo systemctl enable --now supergfxd.service
+sudo systemctl enable --now power-profiles-daemon
+
+# atur jam
+sudo timedatectl set-local-rtc 1 --adjust-system-clock
+sudo timedatectl set-ntp true
+
+read -rp "Apakah kamu ingin restart sekarang? [y/N] " ans
+if [[ "$ans" =~ ^[Yy]$ ]]; then
+  echo "Restarting..."
+  sleep 2
+  sudo reboot
+else
+  echo "Baik, kamu bisa restart manual nanti dengan 'sudo reboot'."
+fi
