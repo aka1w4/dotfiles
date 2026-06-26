@@ -43,7 +43,7 @@
              "2": "",
              "3": "",
              "4": "",
-             "5": "",
+             "5": "",
              "urgent": "",
              "focused": "",
              "default": ""
@@ -145,6 +145,8 @@
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
+        "tooltip-format": "hello",
+        "tooltip": true,
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
@@ -152,18 +154,18 @@
     //"battery#bat0": {
     //    "bat": "BAT0"
     //},
-    "power-profiles-daemon": {
-      "format": "{icon}",
-      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-      "tooltip": true,
-      "on-click" : "true",
-      "format-icons": {
-        "default": "",
-        "performance": "",
-        "balanced": "",
-        "power-saver": ""
-      }
-    },
+    //"power-profiles-daemon": {
+    //  "format": "{icon}",
+    //  "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    //  "tooltip": true,
+    //  "on-click" : "true",
+    //  "format-icons": {
+    //    "default": "",
+    //    "performance": "",
+    //   "balanced": "",
+    //    "power-saver": ""
+    //  }
+    //},
     "custom/power-profile": {
       "exec": "$HOME/.config/waybar/scripts/power.sh -i",
       "interval": 5,
