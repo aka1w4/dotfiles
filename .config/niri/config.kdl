@@ -138,6 +138,8 @@ layout {
 
     // You can change how the focus ring looks.
     focus-ring {
+        off
+
         // Uncomment this line to disable the focus ring.
         // off
 
@@ -249,7 +251,7 @@ layout {
 spawn-at-startup "waybar"
 spawn-sh-at-startup "sleep 2 && exec '$HOME/.scripts/check-conservation.sh'"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
-spawn-at-startup "dunst"
+spawn-at-startup "mako"
 spawn-sh-at-startup "$HOME/.config/bspwm/scripts/wallpaper"
 spawn-at-startup "nm-applet"
 
@@ -277,9 +279,12 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // Animation settings.
 // The wiki explains how to configure individual animations:
 // https://niri-wm.github.io/niri/Configuration:-Animations
-animations 
+animations { 
 
 
+
+    off
+}
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://niri-wm.github.io/niri/Configuration:-Window-Rules
@@ -493,15 +498,24 @@ binds {
     Mod+7 { focus-workspace 7; }
     Mod+8 { focus-workspace 8; }
     Mod+9 { focus-workspace 9; }
-    Mod+Shift+1 { move-column-to-workspace "1"; }
-    Mod+Shift+2 { move-column-to-workspace "2"; }
-    Mod+Shift+3 { move-column-to-workspace "3"; }
-    Mod+Shift+4 { move-column-to-workspace "4"; }
-    Mod+Shift+5 { move-column-to-workspace "5"; }
-    Mod+Shift+6 { move-column-to-workspace "6"; }
-    Mod+Shift+7 { move-column-to-workspace "7"; }
-    Mod+Shift+8 { move-column-to-workspace "8"; }
-    Mod+Shift+9 { move-column-to-workspace "9"; }
+    Mod+Shift+1 { move-window-to-workspace 1; }
+    Mod+Shift+2 { move-window-to-workspace 2; }
+    Mod+Shift+3 { move-window-to-workspace 2; }
+    Mod+Shift+4 { move-window-to-workspace 4; }
+    Mod+Shift+5 { move-window-to-workspace 5; }
+    Mod+Shift+6 { move-window-to-workspace 6; }
+    Mod+Shift+7 { move-window-to-workspace 7; }
+    Mod+Shift+8 { move-window-to-workspace 8; }
+    Mod+Shift+9 { move-window-to-workspace 9; }
+    Mod+Ctrl+1 { move-column-to-workspace "1"; }
+    Mod+Ctrl+2 { move-column-to-workspace "2"; }
+    Mod+Ctrl+3 { move-column-to-workspace "3"; }
+    Mod+Ctrl+4 { move-column-to-workspace "4"; }
+    Mod+Ctrl+5 { move-column-to-workspace "5"; }
+    Mod+Ctrl+6 { move-column-to-workspace "6"; }
+    Mod+Ctrl+7 { move-column-to-workspace "7"; }
+    Mod+Ctrl+8 { move-column-to-workspace "8"; }
+    Mod+Ctrl+9 { move-column-to-workspace "9"; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
@@ -603,7 +617,7 @@ binds {
 environment
 spawn-sh-at-startup "sleep 2 && /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
-window-rule { match app-id=r"com.mitchellh.ghostty"; open-on-workspace "terminal"; }
+window-rule { match app-id=r"com.mitchellh.ghostty"; opacity 0.85; background-effect { blur true; }; open-on-workspace "terminal"; }
 
 window-rule { match app-id=r"google-chrome"; open-on-workspace "browser"; }
 
@@ -611,4 +625,13 @@ window-rule { match app-id=r"thunar"; open-on-workspace "file"; }
 
 window-rule { match app-id=r"kitty"; open-on-workspace "terminal"; }
 
-window-rule { open-on-workspace "misc"; }
+window-rule {
+ 
+    exclude app-id=r"com.mitchellh.ghostty"
+    exclude app-id=r"kitty"
+    exclude app-id=r"google-chrome"
+    exclude app-id=r"thunar"
+
+
+    open-on-workspace "misc" ;
+}
