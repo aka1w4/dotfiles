@@ -33,6 +33,7 @@ PACMAN_PKGS=(
 
 # Wayland core
 niri
+xwayland-satellite
 waybar
 fuzzel
 swaylock
