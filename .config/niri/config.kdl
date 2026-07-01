@@ -68,7 +68,7 @@ input {
     // for the resolution.
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1920x1080@60.000"
+    mode "1920x1080@60.001"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
     scale 2
@@ -93,6 +93,7 @@ input {
 // Find more information on the wiki:
 // https://niri-wm.github.io/niri/Configuration:-Layout
 layout {
+    background-color "#000000"
     // Set gaps around windows in logical pixels.
     gaps 16
 
@@ -241,26 +242,23 @@ layout {
     // layer-shell panels and regular gaps.
     struts 
 }
-
-// Add lines like this to spawn processes at startup.
-// Note that running niri as a session supports xdg-desktop-autostart,
-// which may be more convenient to use.
-// See the binds section below for more spawn examples.
-
-// This line starts waybar, a commonly used bar for Wayland compositors.
+spawn-sh-at-startup "$HOME/.scripts/wallpaper"
 spawn-at-startup "waybar"
-spawn-sh-at-startup "sleep 2 && exec '$HOME/.scripts/check-conservation.sh'"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "mako"
-spawn-sh-at-startup "$HOME/.config/bspwm/scripts/wallpaper"
 spawn-at-startup "nm-applet"
+spawn-sh-at-startup "$HOME/.scripts/check-conservation.sh"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 
-hotkey-overlay 
+hotkey-overlay {
+ 
 
 
+
+    skip-at-startup
+}
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
 // Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
@@ -279,7 +277,8 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // Animation settings.
 // The wiki explains how to configure individual animations:
 // https://niri-wm.github.io/niri/Configuration:-Animations
-animations { 
+animations {
+ 
 
 
 
@@ -507,15 +506,15 @@ binds {
     Mod+Shift+7 { move-window-to-workspace 7; }
     Mod+Shift+8 { move-window-to-workspace 8; }
     Mod+Shift+9 { move-window-to-workspace 9; }
-    Mod+Ctrl+1 { move-column-to-workspace "1"; }
-    Mod+Ctrl+2 { move-column-to-workspace "2"; }
-    Mod+Ctrl+3 { move-column-to-workspace "3"; }
-    Mod+Ctrl+4 { move-column-to-workspace "4"; }
-    Mod+Ctrl+5 { move-column-to-workspace "5"; }
-    Mod+Ctrl+6 { move-column-to-workspace "6"; }
-    Mod+Ctrl+7 { move-column-to-workspace "7"; }
-    Mod+Ctrl+8 { move-column-to-workspace "8"; }
-    Mod+Ctrl+9 { move-column-to-workspace "9"; }
+    Mod+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Ctrl+2 { move-column-to-workspace 2; }
+    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+4 { move-column-to-workspace 4; }
+    Mod+Ctrl+5 { move-column-to-workspace 5; }
+    Mod+Ctrl+6 { move-column-to-workspace 6; }
+    Mod+Ctrl+7 { move-column-to-workspace 7; }
+    Mod+Ctrl+8 { move-column-to-workspace 8; }
+    Mod+Ctrl+9 { move-column-to-workspace 9; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
@@ -612,6 +611,14 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
+
+    Ctrl+Alt+1 { spawn-sh "$HOME/.scripts/wallpaper 1"; }
+    Ctrl+Alt+2 { spawn-sh "$HOME/.scripts/wallpaper 2"; }
+    Ctrl+Alt+3 { spawn-sh "$HOME/.scripts/wallpaper 3"; }
+    Ctrl+Alt+4 { spawn-sh "$HOME/.scripts/wallpaper 4"; }
+    Ctrl+Alt+5 { spawn-sh "$HOME/.scripts/wallpaper 5"; }
+    Ctrl+Alt+6 { spawn-sh "$HOME/.scripts/wallpaper 6"; }
+    Ctrl+Alt+7 { spawn-sh "$HOME/.scripts/wallpaper 7"; }
 }
 
 environment
@@ -634,4 +641,12 @@ window-rule {
 
 
     open-on-workspace "misc" ;
+}
+output "eDP-1" {
+    mode "1920x1080@144.001"
+
+    scale 1.0
+
+    transform "normal"
+    position x=0 y=0
 }

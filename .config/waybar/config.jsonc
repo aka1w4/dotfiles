@@ -1,6 +1,6 @@
 // -*- mode: jsonc -*-
 {
-    // "layer": "top", // Waybar at top layer
+    //"layer": "down", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
@@ -30,7 +30,8 @@
         //"battery#bat0",
         "clock",
         "tray",
-        "custom/power"
+        "custom/power",
+        "custom/laucher"
     ],
     //Modules configuration
      "niri/workspaces": {
@@ -215,9 +216,9 @@
     },
     "custom/power": {
         "format" : "⏻ ",
-		"tooltip": false,
-		"menu": "on-click",
-		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+		    "tooltip": false,
+		    "menu": "on-click",
+		    "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
 		"menu-actions": {
 			"shutdown": "shutdown",
 			"reboot": "reboot",
@@ -225,5 +226,9 @@
 			"hibernate": "systemctl hibernate",
       "exit": "niri msg action quit"
 		}
+    },
+     "custom/laucher": {
+      "format": " ",
+      "on-click": "fuzzel"
     }
 }

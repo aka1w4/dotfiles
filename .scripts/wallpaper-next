@@ -1,0 +1,20 @@
+#!/bin/bash
+
+FILE="$HOME/.config/bspwm/scripts/.wallpaper_"
+WALLPAPER_SCREEN=$(cat "$FILE" 2>/dev/null || echo 1)
+
+TOTAL=7
+
+case "$1" in
+  next)
+    (( newWallpaper = (WALLPAPER_SCREEN % TOTAL) + 1 ))
+    ;;
+  prev)
+    (( newWallpaper = (WALLPAPER_SCREEN - 2 + TOTAL) % TOTAL + 1 ))
+    ;;
+  *)
+    exit 1
+    ;;
+esac
+
+bash "$HOME/.scripts/wallpaper" "$newWallpaper"

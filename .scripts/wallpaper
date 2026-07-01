@@ -1,0 +1,38 @@
+#!/bin/bash
+
+COMMAND=$1
+FILE="$HOME/.scripts/.wallpaper_"
+WALLPAPER_SCREEN=$(cat "$FILE" 2>/dev/null || echo 1)
+
+if [[ -z "$COMMAND" ]]; then
+  COMMAND=$WALLPAPER_SCREEN
+fi
+
+echo "$COMMAND" > "$FILE"
+
+case "$COMMAND" in
+  1) 
+    swaybg -i $HOME/.wallpapers/default/moona.jpeg -m fill
+  ;;
+  2)  
+    swaybg -i $HOME/.wallpapers/default/W.jpeg -m fill
+  ;;
+  3)
+    swaybg -i $HOME/.wallpapers/default/gura.jpg -m fill
+  ;;
+  4)
+    swaybg -i $HOME/.wallpapers/default/ina.jpeg -m fill
+  ;;
+  5)
+    swaybg -i $HOME/.wallpapers/default/dunes.jpg -m fill
+  ;;
+  6)
+    swaybg -i $HOME/.wallpapers/default/waves.jpg -m fill
+  ;;
+  7)
+    swaybg -i $HOME/.wallpapers/default/27746.jpg -m fill
+  ;;
+  *)
+    swaybg -i $HOME/.wallpapers/default/moona.jpeg -m fill
+  ;;
+esac
