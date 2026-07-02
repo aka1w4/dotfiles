@@ -288,16 +288,6 @@ animations {
 // Find more information on the wiki:
 // https://niri-wm.github.io/niri/Configuration:-Window-Rules
 
-// Work around WezTerm's initial configure bug
-// by setting an empty default-column-width.
-window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
-    match app-id=r"^org\.wezfurlong\.wezterm$"
-    default-column-width 
-}
-
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule { match app-id=r"firefox$" title=r"^Picture-in-Picture$"; open-floating true; open-on-workspace "browser"; }
 
@@ -624,24 +614,16 @@ binds {
 environment
 spawn-sh-at-startup "sleep 2 && /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
-window-rule { match app-id=r"com.mitchellh.ghostty"; opacity 0.85; background-effect { blur true; }; open-on-workspace "terminal"; }
+window-rule { match app-id=r"com.mitchellh.ghostty"; open-floating true; opacity 0.85; background-effect { blur true; }; open-on-workspace "terminal"; default-column-width { fixed 1888; }; default-window-height { fixed 1018; }; }
 
 window-rule { match app-id=r"google-chrome"; open-on-workspace "browser"; }
 
-window-rule { match app-id=r"thunar"; open-on-workspace "file"; }
+window-rule { match app-id=r"thunar"; open-floating true; open-on-workspace "file"; }
 
-window-rule { match app-id=r"kitty"; open-on-workspace "terminal"; }
+window-rule { match app-id=r"kitty"; open-floating true; open-on-workspace "terminal"; }
 
-window-rule {
- 
-    exclude app-id=r"com.mitchellh.ghostty"
-    exclude app-id=r"kitty"
-    exclude app-id=r"google-chrome"
-    exclude app-id=r"thunar"
+window-rule { match app-id=r"Spotify"; open-floating true; open-on-workspace "music"; }
 
-
-    open-on-workspace "misc" ;
-}
 output "eDP-1" {
     mode "1920x1080@144.001"
 
@@ -649,4 +631,17 @@ output "eDP-1" {
 
     transform "normal"
     position x=0 y=0
+}
+
+window-rule {
+ 
+    exclude app-id=r"com.mitchellh.ghostty"
+    exclude app-id=r"kitty"
+    exclude app-id=r"google-chrome"
+    exclude app-id=r"thunar"
+    exclude app-id=r"Spotify"
+    exclude app-id=r"firefox$"
+
+
+    open-on-workspace "misc" ;
 }
