@@ -645,3 +645,5 @@ window-rule {
 
     open-on-workspace "misc" ;
 }
+
+spawn-at-startup "swayidle" "-w" "timeout" "300" "swaylock -f" "timeout" "600" "niri msg action power-off-monitors" "before-sleep" "swaylock -f"
