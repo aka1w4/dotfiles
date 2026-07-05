@@ -8,30 +8,30 @@
     // Choose the order of the modules
     "modules-left": [
         "custom/laucher",
-        "niri/workspaces"
-        //"custom/media"
+        "niri/workspaces",
+        "custom/media"
     ],
     "modules-center": [
-        "niri/window"
+        "niri/window",
     ],
     "modules-right": [
         "custom/waybar_menu",
         //"mpd",
-        "idle_inhibitor",
-        "pulseaudio",
-        "network",
+        //"idle_inhibitor",
+        //"pulseaudio",
+        //"network",
         //"power-profiles-daemon",
-        "custom/power-profile",
+        //"custom/power-profile",
         "cpu",
         "memory",
         "temperature",
-        "backlight",
+        //"backlight",
         //"keyboard-state",
         //"sway/language",
         "battery",
         //"battery#bat0",
         "clock",
-        "tray",
+        //"tray",
         "custom/power",
         ],
     //Modules configuration
@@ -191,7 +191,7 @@
       "format-linked": "{ifname} (No IP) ",
       "format-disconnected": "Disconnected ⚠",
       "interval": 5,
-      "format-alt": "{bandwidthUpBytes} {bandwidthDownBytes}"
+      "format-alt": "{bandwidthUpBytes}/{bandwidthDownBytes}"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
