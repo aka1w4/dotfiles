@@ -19,7 +19,8 @@
         //"mpd",
         "idle_inhibitor",
         "pulseaudio",
-        "network",
+        "privacy",
+        //"network",
         //"power-profiles-daemon",
         "custom/power-profile",
         "cpu",
@@ -41,11 +42,11 @@
          "warp-on-scroll": false,
          "format": "{icon}",
          "format-icons": {
-             "1": "",
-             "2": "",
-             "3": "",
-             "4": "",
-             "5": "",
+             "1": "",
+             "2": "",
+             "3": "",
+             "4": "",
+             "5": "",             
              "urgent": "",
              "focused": "󰮯",
              "default": "󰊠"
@@ -60,16 +61,6 @@
     //        "unlocked": ""
     //    }
     //},
-    "niri/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "niri/scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": ["", ""],
-        "tooltip": true,
-        "tooltip-format": "{app}: {title}"
-    },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
         "format-disconnected": "Disconnected ",
@@ -246,5 +237,42 @@
       "on-click": "$HOME/.config/waybar/scripts/menu_waybar.sh",
       "tooltip": true,
       "tooltip-format": "menu waybar"
-    }
+    },
+    "privacy": {
+	"icon-spacing": 4,
+	"icon-size": 18,
+	"transition-duration": 250,
+	"modules": [
+		{
+			"type": "screenshare",
+			"tooltip": true,
+			"tooltip-icon-size": 24
+		},
+		{
+			"type": "audio-out",
+			"tooltip": true,
+			"tooltip-icon-size": 24
+		},
+		{
+			"type": "audio-in",
+			"tooltip": true,
+			"tooltip-icon-size": 24
+		},
+		{
+			"type": "location",
+			"icon-name": "location-services-active-symbolic"
+		}
+	],
+	"ignore-monitor": true,
+	"ignore": [
+		{
+			"type": "audio-in",
+			"name": "cava"
+		},
+		{
+			"type": "screenshare",
+			"name": "obs"
+		}
+	]
+}
 }

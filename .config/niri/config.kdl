@@ -1,8 +1,8 @@
+workspace "misc"
 workspace "terminal"
 workspace "browser"
 workspace "file"
 workspace "music"
-workspace "misc"
 // This config is in the KDL format: https://kdl.dev
 // "/-" comments out the following node.
 // Check the wiki for a full description of the configuration:
@@ -633,7 +633,7 @@ output "eDP-1" {
     position x=0 y=0
 }
 
-window-rule {
+/-window-rule {
  
     exclude app-id=r"com.mitchellh.ghostty"
     exclude app-id=r"kitty"

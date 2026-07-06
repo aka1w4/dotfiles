@@ -16,10 +16,12 @@
     ],
     "modules-right": [
         "custom/waybar_menu",
+        "systemd-failed-units",
         //"mpd",
         //"idle_inhibitor",
         //"pulseaudio",
-        //"network",
+        "network",
+        "disk",
         //"power-profiles-daemon",
         //"custom/power-profile",
         "cpu",
@@ -30,7 +32,7 @@
         //"sway/language",
         "battery",
         //"battery#bat0",
-        "clock",
+        //"clock",
         //"tray",
         "custom/power",
         ],
@@ -41,11 +43,11 @@
          "warp-on-scroll": false,
          "format": "{icon}",
          "format-icons": {
-             "1": "",
-             "2": "",
-             "3": "",
-             "4": "",
-             "5": "",
+             "1": "",
+             "2": "",
+             "3": "",
+             "4": "",
+             "5": "",
              "urgent": "",
              "focused": "󰮯",
              "default": "󰊠"
@@ -60,16 +62,6 @@
     //        "unlocked": ""
     //    }
     //},
-    "niri/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "niri/scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": ["", ""],
-        "tooltip": true,
-        "tooltip-format": "{app}: {title}"
-    },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
         "format-disconnected": "Disconnected ",
@@ -185,13 +177,11 @@
     //    "format-alt": "{ifname}: {ipaddr}/{cidr}"
     //},
     "network": {
-      "format-wifi": "{essid} ({signalStrength}%) ",
-      "format-ethernet": "{ipaddr}/{cidr} ",
-      "tooltip-format": "{ifname} via {gwaddr} ",
+      "format": "{bandwidthUpBytes}/{bandwidthDownBytes}",
+      "tooltip-format": "{ifname} {gwaddr} ({signalStrength}%)",
       "format-linked": "{ifname} (No IP) ",
       "format-disconnected": "Disconnected ⚠",
-      "interval": 5,
-      "format-alt": "{bandwidthUpBytes}/{bandwidthDownBytes}"
+      "interval": 5
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
@@ -246,5 +236,22 @@
       "on-click": "$HOME/.config/waybar/scripts/menu_waybar.sh",
       "tooltip": true,
       "tooltip-format": "menu waybar"
+    },
+    "disk": {
+	    "interval": 60,
+	    "format": "{percentage_used}% ",
+	    "header": "Disks: ",
+	    "paths": ["/", "/home"],
+	    "separator": " ",
+      "on-click": "thunar"
+    },
+    "systemd-failed-units": {
+	    "hide-on-ok": false,
+	    "format": "✗ {nr_failed}",
+	    "format-ok": "✓",
+    	"system": true,
+	    "user": false,
+	    "tooltip-format": "{nr_failed} failed units:n{failed_units_list}",
+	    "tooltip-unit-format": "{scope}: {name} ({active_state})",
     }
 }
