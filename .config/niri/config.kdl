@@ -280,9 +280,55 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 animations {
  
 
+    workspace-switch {
+        off
+
+ curve "cubic-bezier" 0.42 0.0 1.0 1.0 ;
 
 
-    off
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        duration-ms 600
+    }
+    window-open {
+        duration-ms 300
+        curve "cubic-bezier" 0.0 0.0 0.58 1.0
+    }
+    window-close {
+        duration-ms 300
+        curve "cubic-bezier" 1.0 -0.033 0.58 1.0
+    }
+    window-movement {
+        duration-ms 300
+        curve "cubic-bezier" 0.25 0.1 0.699 1.089
+    }
+    window-resize {
+        duration-ms 300
+        curve "cubic-bezier" 1.0 0.797 0.87 0.846
+    }
+    config-notification-open-close {
+        off
+
+        duration-ms 300
+        curve "cubic-bezier" 0.42 0.0 1.0 1.0
+    }
 }
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
