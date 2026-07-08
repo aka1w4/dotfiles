@@ -11,13 +11,13 @@ if pgrep waybar >/dev/null; then
 fi
 
 case "$get" in
-  waybar1) 
-    waybar &
+  clear) 
   ;;
   waybar2) 
     waybar -c "$CONFIG/alt/config_alt.jsonc" -s "$CONFIG/alt/style_alt.css" &
   ;;
-  * | clear)
+  * | waybar1)
+    waybar &
   ;;
 esac
 

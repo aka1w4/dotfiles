@@ -1,36 +1,44 @@
 // -*- mode: jsonc -*-
+//  
 {
     //"layer": "down", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
+    "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
         "custom/laucher",
-        "niri/workspaces",
-        "custom/media"
+        "niri/workspaces"
+        //"custom/media"
     ],
     "modules-center": [
         "niri/window",
     ],
     "modules-right": [
-        "custom/waybar_menu",
         "systemd-failed-units",
+        "custom/waybar_menu",
         //"mpd",
         //"idle_inhibitor",
         //"pulseaudio",
+        "custom/left#1",
         "network",
-        "disk",
+        "custom/right#1",
         //"power-profiles-daemon",
         //"custom/power-profile",
+        "custom/left#2",
         "cpu",
         "memory",
+        "disk",
         "temperature",
+        "custom/right#2",
         //"backlight",
         //"keyboard-state",
         //"sway/language",
+        "custom/left#3",
         "battery",
+        "clock",
+        "custom/right#3",
         //"battery#bat0",
         //"clock",
         //"tray",
@@ -62,47 +70,6 @@
     //        "unlocked": ""
     //    }
     //},
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 5,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10,
-        // "icons": {
-        //   "blueman": "bluetooth",
-        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
-        // }
-    },
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
@@ -122,11 +89,6 @@
         // "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
         "format-icons": ["", "", ""]
-    },
-    "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "battery": {
         "states": {
@@ -160,13 +122,6 @@
     //    "power-saver": ""
     //  }
     //},
-    "custom/power-profile": {
-      "exec": "$HOME/.config/waybar/scripts/power.sh -i",
-      "interval": 5,
-      "return-type": "json",
-      "format": "{}",
-      "on-click": "$HOME/.config/waybar/scripts/power.sh -m"
-    },
     //"network": {
     //    // "interface": "wlp2*", // (Optional) To force the use of this interface
     //    "format-wifi": "{essid} ({signalStrength}%) ",
@@ -177,42 +132,11 @@
     //    "format-alt": "{ifname}: {ipaddr}/{cidr}"
     //},
     "network": {
-      "format": "{bandwidthUpBytes}/{bandwidthDownBytes}",
+      "format": "U{bandwidthUpBytes} D{bandwidthDownBytes}",
       "tooltip-format": "{ifname} {gwaddr} ({signalStrength}%)",
       "format-linked": "{ifname} (No IP) ",
       "format-disconnected": "Disconnected ⚠",
       "interval": 5
-    },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-    },
-    "custom/media": {
-        "format": "{icon} {text}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
     "custom/power": {
         "format" : "⏻ ",
@@ -228,12 +152,12 @@
 		}
     },
      "custom/laucher": {
-      "format": " ",
+      "format": "  ",
       "on-click": "fuzzel"
     },
     "custom/waybar_menu": {
       "format": "󰕮 ",
-      "on-click": "$HOME/.config/waybar/scripts/menu_waybar.sh",
+      "on-click": "$HOME/.config/waybar/scripts/menu_waybar.sh -m",
       "tooltip": true,
       "tooltip-format": "menu waybar"
     },
@@ -247,11 +171,35 @@
     },
     "systemd-failed-units": {
 	    "hide-on-ok": false,
-	    "format": "✗ {nr_failed}",
-	    "format-ok": "✓",
+	    "format": " ✗{nr_failed} ",
+	    "format-ok": "✓ ",
     	"system": true,
 	    "user": false,
+      "toolip": true,
 	    "tooltip-format": "{nr_failed} failed units:n{failed_units_list}",
-	    "tooltip-unit-format": "{scope}: {name} ({active_state})",
+	  },
+    "custom/right#1": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/left#1": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/right#2": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/left#2": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/right#3": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/left#3": {
+      "format": "",
+      "tooltip": false
     }
 }

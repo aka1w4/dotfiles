@@ -1,51 +1,61 @@
 ignore-empty-password
-font=Ubuntu
+font=MapleMono-TTF
+#font-size=25
 
 clock
 timestr=%R
 datestr=%a, %e of %B
-image=$HOME/.wallpapers/default/12512468.jpg
+image=$HOME/.wallpapers/default/moona.jpeg
 #screenshots
 
-fade-in=0.2
+fade-in=0.5
 
-effect-blur=20x2
-#effect-greyscale
+effect-blur=7x3
+effect-greyscale
 effect-scale=0.3
 
 indicator
-indicator-radius=240
+indicator-radius=180
 indicator-thickness=20
 indicator-caps-lock
+indicator-idle-visible
+#indicator-y-position=890
+#indicator-image=/home/aka/.wallpapers/default/gura.jpg
 
-key-hl-color=880033
+key-hl-color=89B4FAFF
+#key-hl-color=89B4FAFF
 
 separator-color=00000000
 
-inside-color=00000099
-inside-clear-color=ffd20400
-inside-caps-lock-color=009ddc00
-inside-ver-color=d9d8d800
-inside-wrong-color=ee2e2400
+#inside-color=1E1E2EFF
+#inside-color=231F20CC
+inside-color=181825CC
+inside-clear-color=181825CC
+inside-caps-lock-color=181825CC
+inside-ver-color=181825CC
+inside-wrong-color=181825CC
 
-ring-color=231f20D9
-ring-clear-color=231f20D9
-ring-caps-lock-color=231f20D9
-ring-ver-color=231f20D9
-ring-wrong-color=231f20D9
+#ring-color=313244DD
+ring-color=1d1e28D9
+ring-clear-color=1d1e28D9
+ring-caps-lock-color=1d1e28D9
+ring-ver-color=1d1e28D9
+ring-wrong-color=1d1e28D9
 
-line-color=00000000
-line-clear-color=ffd204FF
-line-caps-lock-color=009ddcFF
-line-ver-color=d9d8d8FF
-line-wrong-color=ee2e24FF
+#89B4FA55
+line-color=d9d8d855
+line-clear-color=d9d8d855
+line-caps-lock-color=d9d8d8D9
+line-ver-color=24ee2eD9
+line-wrong-color=ee2e24D9
 
-text-clear-color=ffd20400
-text-ver-color=d9d8d800
-text-wrong-color=ee2e2400
+text-color=C0CAF5FF
+text-clear-color=C0CAF5FF
+text-caps-lock-color=C0CAF5FF
+text-ver-color=24ee2eFF
+text-wrong-color=ee2e24FF
 
-bs-hl-color=ee2e24FF
-caps-lock-key-hl-color=ffd204FF
+bs-hl-color=89B4FAFF
+caps-lock-key-hl-color=89B4FAFF
 caps-lock-bs-hl-color=ee2e24FF
 disable-caps-lock-text
-text-caps-lock-color=009ddc

@@ -234,7 +234,7 @@
     },
     "custom/waybar_menu": {
       "format": "󰕮 ",
-      "on-click": "$HOME/.config/waybar/scripts/menu_waybar.sh",
+      "on-click": "$HOME/.config/waybar/scripts/menu_waybar.sh -m",
       "tooltip": true,
       "tooltip-format": "menu waybar"
     },
