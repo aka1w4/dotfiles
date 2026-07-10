@@ -4,12 +4,11 @@
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
+    "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
         "custom/laucher",
         "niri/workspaces"
-        //"custom/media"
     ],
     "modules-center": [
         "niri/window"
@@ -17,22 +16,28 @@
     "modules-right": [
         "custom/waybar_menu",
         //"mpd",
-        "idle_inhibitor",
-        "pulseaudio",
-        "privacy",
         //"network",
         //"power-profiles-daemon",
-        "custom/power-profile",
+        "custom/left#3",
         "cpu",
         "memory",
         "temperature",
+        "custom/right#3",
+
+        "custom/left#1",
         "backlight",
-        //"keyboard-state",
-        //"sway/language",
+        "idle_inhibitor",
+        "pulseaudio",
+        "privacy",
+        "custom/right#1",
+
+        "custom/left#2",
         "battery",
-        //"battery#bat0",
+        "custom/power-profile",
         "clock",
         "tray",
+        "custom/right#2",
+
         "custom/power",
         ],
     //Modules configuration
@@ -61,33 +66,7 @@
     //        "unlocked": ""
     //    }
     //},
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 5,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
-    },
-    "idle_inhibitor": {
+   "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
             "activated": "",
@@ -175,15 +154,6 @@
     //    "format-disconnected": "Disconnected ⚠",
     //    "format-alt": "{ifname}: {ipaddr}/{cidr}"
     //},
-    "network": {
-      "format-wifi": "{essid} ({signalStrength}%) ",
-      "format-ethernet": "{ipaddr}/{cidr} ",
-      "tooltip-format": "{ifname} via {gwaddr} ",
-      "format-linked": "{ifname} (No IP) ",
-      "format-disconnected": "Disconnected ⚠",
-      "interval": 5,
-      "format-alt": "{bandwidthUpBytes} {bandwidthDownBytes}"
-    },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
@@ -202,18 +172,6 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
-    },
-    "custom/media": {
-        "format": "{icon} {text}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
     "custom/power": {
         "format" : "⏻ ",
@@ -274,5 +232,29 @@
 			"name": "obs"
 		}
 	]
-}
+  },
+  "custom/right#1": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/left#1": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/right#2": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/left#2": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/right#3": {
+      "format": "",
+      "tooltip": false
+    },
+    "custom/left#3": {
+      "format": "",
+      "tooltip": false
+    }
 }

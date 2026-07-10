@@ -14,10 +14,10 @@ case "$get" in
   clear) 
   ;;
   waybar2) 
-    waybar -c "$CONFIG/alt/config_alt.jsonc" -s "$CONFIG/alt/style_alt.css" &
-  ;;
-  * | waybar1)
     waybar &
+      ;;
+  * | waybar1)
+    waybar -c "$CONFIG/alt/config_alt.jsonc" -s "$CONFIG/alt/style_alt.css" &
   ;;
 esac
 
