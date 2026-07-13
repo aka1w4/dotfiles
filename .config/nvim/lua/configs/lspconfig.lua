@@ -13,4 +13,13 @@ local servers = {
   "glsl_analyzer",
 }
 
+vim.lsp.config.clangd = {
+  cmd = {
+    "clangd",
+    "--query-driver=/home/aka/.espressif/tools/**/bin/*",
+    "--compile-commands-dir=build",
+  },
+  filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+}
+
 vim.lsp.enable(servers)

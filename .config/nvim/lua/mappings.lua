@@ -29,4 +29,12 @@ map("n", "<leader>fg", builtin.live_grep, { desc = "Live grep" })
 map("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
 map("n", "<leader>fh", builtin.help_tags, { desc = "Help tags" })
 
+map("n", "<leader><Left>",  "<C-w>h")
+map("n", "<leader><Down>",  "<C-w>j")
+map("n", "<leader><Up>",    "<C-w>k")
+map("n", "<leader><Right>", "<C-w>l")
+
+map("n", "<leader>sh", "<cmd>split<CR>")
+map("n", "<leader>sv", "<cmd>vsplit<CR>")
+
 -- map({ "n", "i", "v" }, "<C-s>", j"<cmd> w <cr>")
