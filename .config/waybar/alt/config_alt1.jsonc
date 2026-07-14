@@ -1,5 +1,4 @@
 // -*- mode: jsonc -*-
-//  
 {
     //"layer": "down", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
@@ -9,42 +8,37 @@
     // Choose the order of the modules
     "modules-left": [
         "custom/laucher",
-        "niri/workspaces"
-        //"custom/media"
+        "niri/workspaces",
+        
+        "custom/left#1",
+        "backlight",
+        "idle_inhibitor",
+        "pulseaudio",
+        "privacy",
+        "custom/right#1",
     ],
     "modules-center": [
         "niri/window"
     ],
     "modules-right": [
-        "systemd-failed-units",
         "custom/waybar_menu",
         //"mpd",
-        //"idle_inhibitor",
-        //"pulseaudio",
-        "custom/left#1",
-        "network",
-        "custom/right#1",
+        //"network",
         //"power-profiles-daemon",
-        //"custom/power-profile",
-        "custom/left#2",
+        "custom/left#3",
         "cpu",
         "memory",
-        "disk",
         "temperature",
-        "custom/right#2",
-        //"backlight",
-        //"keyboard-state",
-        //"sway/language",
-        
-        "custom/left#3",
-        "battery",
-        "clock",
         "custom/right#3",
 
-        //"battery#bat0",
-        //"clock",
-        //"tray",
-        "custom/power"
+        "custom/left#2",
+        "battery",
+        "custom/power-profile",
+        "clock",
+        "tray",
+        "custom/right#2",
+
+        "custom/power",
         ],
     //Modules configuration
      "niri/workspaces": {
@@ -57,7 +51,7 @@
              "2": "",
              "3": "",
              "4": "",
-             "5": "",
+             "5": "",             
              "urgent": "",
              "focused": "󰮯",
              "default": "󰊠"
@@ -72,6 +66,21 @@
     //        "unlocked": ""
     //    }
     //},
+   "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10,
+        // "icons": {
+        //   "blueman": "bluetooth",
+        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
+        // }
+    },
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
@@ -91,6 +100,11 @@
         // "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
         "format-icons": ["", "", ""]
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "battery": {
         "states": {
@@ -124,6 +138,13 @@
     //    "power-saver": ""
     //  }
     //},
+    "custom/power-profile": {
+      "exec": "$HOME/.config/waybar/scripts/power.sh -i",
+      "interval": 5,
+      "return-type": "json",
+      "format": "{}",
+      "on-click": "$HOME/.config/waybar/scripts/power.sh -m"
+    },
     //"network": {
     //    // "interface": "wlp2*", // (Optional) To force the use of this interface
     //    "format-wifi": "{essid} ({signalStrength}%) ",
@@ -133,12 +154,24 @@
     //    "format-disconnected": "Disconnected ⚠",
     //    "format-alt": "{ifname}: {ipaddr}/{cidr}"
     //},
-    "network": {
-      "format": "U{bandwidthUpBytes} D{bandwidthDownBytes}",
-      "tooltip-format": "{ifname} {gwaddr} ({signalStrength}%)",
-      "format-linked": "{ifname} (No IP) ",
-      "format-disconnected": "Disconnected ⚠",
-      "interval": 5
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
     },
     "custom/power": {
         "format" : "⏻ ",
@@ -154,7 +187,7 @@
 		}
     },
      "custom/laucher": {
-      "format": "  ",
+      "format": " ",
       "on-click": "fuzzel"
     },
     "custom/waybar_menu": {
@@ -163,24 +196,44 @@
       "tooltip": true,
       "tooltip-format": "menu waybar"
     },
-    "disk": {
-	    "interval": 60,
-	    "format": "{percentage_used}% ",
-	    "header": "Disks: ",
-	    "paths": ["/", "/home"],
-	    "separator": " ",
-      "on-click": "thunar"
-    },
-    "systemd-failed-units": {
-	    "hide-on-ok": false,
-	    "format": " ✗{nr_failed} ",
-	    "format-ok": "✓ ",
-    	"system": true,
-	    "user": false,
-      "toolip": true,
-	    "tooltip-format": "{nr_failed} failed units:n{failed_units_list}",
-	  },
-    "custom/right#1": {
+    "privacy": {
+	"icon-spacing": 4,
+	"icon-size": 18,
+	"transition-duration": 250,
+	"modules": [
+		{
+			"type": "screenshare",
+			"tooltip": true,
+			"tooltip-icon-size": 24
+		},
+		{
+			"type": "audio-out",
+			"tooltip": true,
+			"tooltip-icon-size": 24
+		},
+		{
+			"type": "audio-in",
+			"tooltip": true,
+			"tooltip-icon-size": 24
+		},
+		{
+			"type": "location",
+			"icon-name": "location-services-active-symbolic"
+		}
+	],
+	"ignore-monitor": true,
+	"ignore": [
+		{
+			"type": "audio-in",
+			"name": "cava"
+		},
+		{
+			"type": "screenshare",
+			"name": "obs"
+		}
+	]
+  },
+  "custom/right#1": {
       "format": "",
       "tooltip": false
     },

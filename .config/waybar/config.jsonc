@@ -38,7 +38,7 @@
         "tray",
         "custom/right#2",
 
-        "custom/power",
+        "custom/power"
         ],
     //Modules configuration
      "niri/workspaces": {
