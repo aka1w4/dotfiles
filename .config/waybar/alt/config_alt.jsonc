@@ -9,21 +9,21 @@
     // Choose the order of the modules
     "modules-left": [
         "custom/laucher",
-        "niri/workspaces"
+        "niri/workspaces",
+        "custom/left#1",
+        "network",
+        "custom/right#1"
+
         //"custom/media"
     ],
     "modules-center": [
         "niri/window"
     ],
     "modules-right": [
-        "systemd-failed-units",
         "custom/waybar_menu",
         //"mpd",
         //"idle_inhibitor",
         //"pulseaudio",
-        "custom/left#1",
-        "network",
-        "custom/right#1",
         //"power-profiles-daemon",
         //"custom/power-profile",
         "custom/left#2",
@@ -159,7 +159,7 @@
     },
     "custom/waybar_menu": {
       "format": "󰕮 ",
-      "on-click": "$HOME/.config/waybar/scripts/menu_waybar.sh -m",
+      "on-click": "ags toggle menuwaybar",
       "tooltip": true,
       "tooltip-format": "menu waybar"
     },
@@ -171,15 +171,6 @@
 	    "separator": " ",
       "on-click": "thunar"
     },
-    "systemd-failed-units": {
-	    "hide-on-ok": false,
-	    "format": " ✗{nr_failed} ",
-	    "format-ok": "✓ ",
-    	"system": true,
-	    "user": false,
-      "toolip": true,
-	    "tooltip-format": "{nr_failed} failed units:n{failed_units_list}",
-	  },
     "custom/right#1": {
       "format": "",
       "tooltip": false
