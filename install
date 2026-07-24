@@ -81,6 +81,7 @@ polkit-gnome
 xdg-utils
 xdg-desktop-portal
 xdg-desktop-portal-gtk
+xdg-desktop-portal-gnome
 
 gcc
 clang
@@ -104,7 +105,7 @@ jadx
 zip
 unzip
 file
-htop
+btop
 
 kitty
 ghostty
@@ -125,6 +126,9 @@ lib32-vulkan-radeon
 
 nvidia-dkms
 nvidia-utils
+cuda
+nsight-compute
+nsight-systems
 lib32-nvidia-utils
 
 vulkan-nvidia
@@ -169,6 +173,7 @@ spotify-launcher
 xqp
 #vscodium
 supergfxctl
+logisim
 )
 
 paru -S --needed --noconfirm --skipreview --cleanafter --removemake "${AUR_PKGS[@]}"
