@@ -48,6 +48,8 @@ brightnessctl
 starship
 playerctl
 bat
+kicad 
+ngspice
 
 thunar
 thunar-archive-plugin
@@ -192,8 +194,6 @@ cp -r .scripts $HOME
 cp -r .local $HOME
 cp -f .zshrc $HOME
 cp -f .zshenv $HOME
-cp -f .Xresources $HOME
-cp -f .xinitrc $HOME
 sleep 5
 
 # Oh My Zsh setup
