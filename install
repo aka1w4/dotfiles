@@ -65,6 +65,9 @@ pipewire-pulse
 pipewire-jack
 wireplumber
 rnnoise 
+easyeffects
+lsp-plugins 
+calf
 ladspa
 lsp-plugins-ladspa
 pavucontrol
