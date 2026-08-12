@@ -31,12 +31,20 @@ vim.lsp.config("arduino-language-server", {
     "-clangd", "/usr/sbin/clangd",
     "-cli", "/usr/sbin/arduino-cli",
     "-cli-config", vim.fn.expand("$HOME/.arduino15/arduino-cli.yaml"),
-    "-fqbn", "esp32:esp32:esp32",
+    "-fqbn", "esp32:esp32:esp32s3",
   },
 
   filetypes = { "arduino" },
+  root_markers = { "sketch.yaml", ".git", "*.ino" },
+  capabilities = {
+    textDocument = {
+      semanticTokens = vim.NIL,
+    },
+    workspace = {
+      semanticTokens = vim.NIL,
+    },
+  },
 
-  root_markers = { "sketch.yaml", ".git" },
-})
+ })
 
 vim.lsp.enable(servers)
