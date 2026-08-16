@@ -1,0 +1,99 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+      "type": "file",
+      "source": "~/.config/fastfetch/ascii/logo.txt",
+      "color": {
+        "1": "38;2;245;224;220",
+        "2": "38;2;242;205;205",
+        "3": "38;2;245;194;231",
+        "4": "38;2;250;179;135",
+        "5": "38;2;249;226;175",
+        "6": "38;2;166;227;161",
+        "7": "38;2;148;226;213",
+        "8": "38;2;137;220;235",
+        "9": "38;2;116;199;236"
+      },
+      "padding": {
+        "top": 0,
+        "right": 3
+      }
+    },
+    "display": {
+        "separator": ">  ",
+        "color": {
+            "separator": "red"
+        },
+        "constants": [
+            "═══════════════════════════════════════════════════════════════════════════",
+            "║\u001b[75C║\u001b[75D"
+        ]
+    },
+    "modules": [
+        {
+            "format": "{#1}{#keys}╔{$1}╗\u001b[76D {user-name-colored}{at-symbol-colored}{host-name-colored} 💻 ",
+            "type": "title"
+        },
+        {
+            "key": "{$2}{#31} kernel   ",
+            "type": "kernel"
+        },
+        {
+            "key": "{$2}{#32}󰅐 uptime   ",
+            "type": "uptime"
+        },
+        {
+            "key": "{$2}{#33}{icon} distro   ",
+            "type": "os"
+        },
+        {
+            "key": "{$2}{#34}󰇄 desktop  ",
+            "type": "de"
+        },
+        {
+            "key": "{$2}{#35} term     ",
+            "type": "terminal"
+        },
+        {
+            "key": "{$2}{#36} shell    ",
+            "type": "shell"
+        },
+        {
+            "key": "{$2}{#35}󰍛 cpu      ",
+            "type": "cpu",
+            "showPeCoreCount": true,
+            "temp": true
+        },
+        {
+            "key": "{$2}{#34}󰍛 gpu      ",
+            "type": "gpu"
+        },
+        {
+            "key": "{$2}{#33}󰉉 disk     ",
+            "type": "disk",
+            "folders": "/"
+        },
+        {
+            "key": "{$2}{#32} memory   ",
+            "type": "memory"
+        },
+        {
+            "key": "{$2}{#31}󰩟 network  ",
+            "type": "localip",
+            "format": "{ipv4} ({ifname})"
+        },
+        {
+            "format": "{#1}{#keys}╠{$1}╣",
+            "type": "custom"
+        },
+        {
+            "key": "{$2}{#39} colors   ",
+            "type": "colors",
+            "symbol": "circle"
+        },
+        {
+            "format": "{#1}{#keys}╚{$1}╝",
+            "type": "custom"
+        }
+    ]
+}
