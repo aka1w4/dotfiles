@@ -42,6 +42,7 @@ swayidle
 wl-clipboard
 pamixer
 dunst
+plymouth
 mako
 ly
 brightnessctl
@@ -74,7 +75,7 @@ pavucontrol
 alsa-utils
 bluez
 bluez-utils
-blueman
+bluetui
 
 networkmanager
 wireless_tools
@@ -209,6 +210,7 @@ else
 fi 
 sleep 5
 
+sudo plymouth-set-default-theme bgrt
 sudo systemctl enable --now NetworkManager.service
 sudo systemctl enable --now bluetooth.service
 sudo systemctl enable ly@tty1.service
